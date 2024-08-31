@@ -1,22 +1,13 @@
 package main
 
-import (
-	"io"
-	"os"
-	"strings"
-)
-
 func main() {
+	var rio = make([]uint8, 3)
+	println(&rio)
+	println(rio)
 
-	//	:::: string BUIDLER make concat less memory
-	var bi strings.Builder
-
-	bi.Write([]byte("egor"))
-
-	io.Copy(os.Stdout, strings.NewReader(bi.String()))
-}
-
-//println(strings.Index(name, "e"))
-
-func PrintPointersOfelemntsSlice(rio *[]int) {
+	println(&(rio[2]))
+	rio = append(rio, rio...)
+	println(&rio)
+	println(rio)
+	println(&(rio[2]))
 }
