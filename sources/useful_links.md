@@ -14,4 +14,4 @@
 
 ## profilling(diagnostic)
 
-[Go diagnostivc (godoc)](https://tip.golang.org/doc/diagnostics).
+[Go diagnostivc (godoc)](https://tip.golang.org/doc/diagnosticsgit ).
