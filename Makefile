@@ -1,2 +1,2 @@
 bench_prof:
-	go test  ./prof/... -bench=. -run=xxx -benchmem
+	go test  ./prof/... -bench=. -run=xxx -benchmem .
