@@ -4,20 +4,18 @@ import "sync"
 
 var mutex = sync.Mutex{}
 
-func With_NO_Lock() int {
-	a := 0
-	for i := 0; i < 100000; i++ {
-		a++
+func Preallo(size int) []int {
+	a := make([]int, 0, size)
+	for i := 0; i < size; i++ {
+		a = append(a, i)
 
 	}
 	return a
 }
-func WithLock() int {
-	mutex.Lock()
-	defer mutex.Unlock()
-	a := 0
-	for i := 0; i < 100000; i++ {
-		a++
+func simple_allo(size int) []int {
+	a := make([]int, 0)
+	for i := 0; i < size; i++ {
+		a = append(a, i)
 
 	}
 	return a

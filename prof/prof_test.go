@@ -2,17 +2,17 @@ package prof
 
 import "testing"
 
-func BenchmarkLOCK(b *testing.B) {
+func Benchmark___simple_allo(b *testing.B) {
 	b.RunParallel(func(pb *testing.PB) {
 		for pb.Next() {
-			WithLock()
+			simple_allo(100000)
 		}
 	})
 }
-func BenchmarkUNlock(b *testing.B) {
+func Benchmark___Preallo(b *testing.B) {
 	b.RunParallel(func(pb *testing.PB) {
 		for pb.Next() {
-			With_NO_Lock()
+			Preallo(100000)
 		}
 	})
 }
