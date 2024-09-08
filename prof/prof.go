@@ -1,6 +1,7 @@
 package prof
 
 import (
+	"bytes"
 	"regexp"
 	"strings"
 	"sync"
@@ -15,16 +16,32 @@ func init() {
 
 }
 
-func Reg_Compile(findOf, findIn string) {
-
-	_ = compile.MatchString(findIn)
-
-}
-func Reg_NoCompile(findOf, findIn string) {
-	_, _ = regexp.MatchString(findOf, findIn)
+func SimpleConcat() string {
+	return "3" + "3" + "3"
 
 }
-func No_Reg(findOf, findIn string) {
-	_ = strings.Contains(findOf, findIn)
+func ThroughBuilder() string {
+	builder := strings.Builder{}
+	builder.WriteString("3")
+	builder.WriteString("3")
+	builder.WriteString("3")
+	return builder.String()
 
+}
+
+func ThroughBuffer() string {
+
+	buffer := bytes.Buffer{}
+	buffer.Grow(10)
+	buffer.WriteString("3")
+	buffer.WriteString("3")
+	buffer.WriteString("3")
+	return buffer.String()
+}
+func Assignment() string {
+	a := ""
+	a += "3"
+	a += "3"
+	a += "3"
+	return a
 }
