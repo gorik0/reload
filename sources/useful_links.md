@@ -12,6 +12,27 @@
 
 [Value parts](https://go101.org/article/value-part.html).
 
+
+[visualise ](https://spin.atomicobject.com/visualizing-garbage-collection-algorithms/).
+
+
+[CG in depth ](https://bwoff.medium.com/understanding-gos-garbage-collection-415a19cc485c).
+
+
+
+[Deep dive](https://bwoff.medium.com/understanding-gos-garbage-collection-415a19cc485c).
+
+
+
+
+
+
 ## profilling(diagnostic)
 
 [Go diagnostivc (godoc)](https://tip.golang.org/doc/diagnosticsgit ).
+
+
+
+## SHEDULER
+
+[os Sheduler (context switchign) ](https://www.ardanlabs.com/blog/2018/08/scheduling-in-go-part1.html ).

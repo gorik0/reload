@@ -4,24 +4,14 @@ import (
 	"bufio"
 	"fmt"
 	"io"
+	"log"
 	"os"
+	"runtime"
 	"strings"
-)
+
 
 func main() {
-	file, err := os.OpenFile("gorik.txt", os.O_RDWR, 0777)
-	defer file.Close()
-	if err != nil {
-		panic(err)
-	}
-
-	for i := 0; i < 100000; i++ {
-		_, err := file.WriteString("Helo gorik ")
-		if err != nil {
-			panic(err)
-		}
-
-	}
+	log.Println(runtime.NumCPU())
 }
 
 func makeWordsFromFile_Scanenr(file *os.File) ([]string, error) {
