@@ -1,22 +1,30 @@
 package prof
 
-import "sync"
+import (
+	"regexp"
+	"strings"
+	"sync"
+)
 
 var mutex = sync.Mutex{}
 
-func Preallo(size int) []int {
-	a := make([]int, 0, size)
-	for i := 0; i < size; i++ {
-		a = append(a, i)
+var compile *regexp.Regexp
 
-	}
-	return a
+func init() {
+	compile, _ = regexp.Compile("egor")
+
 }
-func simple_allo(size int) []int {
-	a := make([]int, 0)
-	for i := 0; i < size; i++ {
-		a = append(a, i)
 
-	}
-	return a
+func Reg_Compile(findOf, findIn string) {
+
+	_ = compile.MatchString(findIn)
+
+}
+func Reg_NoCompile(findOf, findIn string) {
+	_, _ = regexp.MatchString(findOf, findIn)
+
+}
+func No_Reg(findOf, findIn string) {
+	_ = strings.Contains(findOf, findIn)
+
 }
