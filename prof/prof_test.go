@@ -1,30 +1,25 @@
-package prof
+package main
 
-import "testing"
+import (
+	"testing"
+)
 
 //var hardString = makeString()
 
-func Benchmark___Asignment(b *testing.B) {
-
+func BenchmarkBuilder(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		Assignment()
+		for i := 0; i < 10000; i++ {
+			makeRIOandCOUNT(1e4)
+
+		}
+
 	}
 }
-func Benchmark___SimpleConcat(b *testing.B) {
-
+func BenchmarkBuilder___Pool(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		SimpleConcat()
-	}
-}
-func Benchmark___ThroughBuilder(b *testing.B) {
+		for i := 0; i < 10000; i++ {
+			makeRIOandCOUNT_____sync(1e4)
 
-	for i := 0; i < b.N; i++ {
-		ThroughBuilder()
-	}
-}
-func Benchmark___ThroughBuffer(b *testing.B) {
-
-	for i := 0; i < b.N; i++ {
-		ThroughBuffer()
+		}
 	}
 }

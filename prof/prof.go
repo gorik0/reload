@@ -1,47 +1,74 @@
-package prof
+package main
 
 import (
-	"bytes"
-	"regexp"
-	"strings"
+	"fmt"
+	"math/rand"
+	"runtime"
 	"sync"
 )
 
-var mutex = sync.Mutex{}
+func main() {
+	printAlloc()
+	for i := 0; i < 10; i++ {
 
-var compile *regexp.Regexp
+		makeRIOandCOUNT(1e4)
 
-func init() {
-	compile, _ = regexp.Compile("egor")
-
-}
-
-func SimpleConcat() string {
-	return "3" + "3" + "3"
-
-}
-func ThroughBuilder() string {
-	builder := strings.Builder{}
-	builder.WriteString("3")
-	builder.WriteString("3")
-	builder.WriteString("3")
-	return builder.String()
+	}
+	printAlloc()
 
 }
 
-func ThroughBuffer() string {
+//go:noinline
+func makeRIOandCOUNT(num int) {
+	printAlloc()
+	fmt.Println("BEFORE")
 
-	buffer := bytes.Buffer{}
-	buffer.Grow(10)
-	buffer.WriteString("3")
-	buffer.WriteString("3")
-	buffer.WriteString("3")
-	return buffer.String()
+	var res int
+	rio := make([]int, num)
+	for i := range len(rio) {
+		rio[i] = rand.Intn(num)
+
+	}
+
+	for _, i := range rio {
+		res += i
+
+	}
+	_ = res
+
+	printAlloc()
+	fmt.Println("AFTER")
 }
-func Assignment() string {
-	a := ""
-	a += "3"
-	a += "3"
-	a += "3"
-	return a
+
+func printAlloc() {
+	var m runtime.MemStats
+	runtime.ReadMemStats(&m)
+	fmt.Printf("%d KB\n", m.Alloc/1024)
+}
+
+var pool = sync.Pool{New: func() interface{} {
+	fmt.Println("NEW again")
+	rio := make([]int, 1e4)
+	return rio
+}}
+
+//go:noinline
+func makeRIOandCOUNT_____sync(num int) {
+	printAlloc()
+	fmt.Println("BEFORE")
+	var res int
+	rio := pool.Get().([]int)
+	defer pool.Put(rio)
+	for i := range len(rio) {
+		rio[i] = rand.Intn(num)
+
+	}
+
+	for _, i := range rio {
+		res += i
+
+	}
+	_ = res
+	printAlloc()
+	fmt.Println("AFTER")
 }
