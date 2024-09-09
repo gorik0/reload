@@ -19,6 +19,9 @@
 [CG in depth ](https://bwoff.medium.com/understanding-gos-garbage-collection-415a19cc485c).
 
 
+[Stack or HEap ](https://syntactic-sugar.dev/blog/nested-route/go-escape-analysis).
+
+
 
 [Deep dive](https://bwoff.medium.com/understanding-gos-garbage-collection-415a19cc485c).
 
@@ -36,3 +39,5 @@
 ## SHEDULER
 
 [os Sheduler (context switchign) ](https://www.ardanlabs.com/blog/2018/08/scheduling-in-go-part1.html ).
+
+
