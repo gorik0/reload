@@ -1,19 +1,26 @@
 package main
 
+import "fmt"
+
 //go:noinline
 func main() {
-	var v int = 0
-	//fmt.Println(v)
-	foo(&v)
+
+	var a = "HELO"
+	println("MAIN:::")
+	println(&a)
+
+	foo(&a)
+	go println("main")
+	fmt.Println(a)
 }
 
-//go:noinline
-func foo(a ...any) {
-	foo2(a)
+func foo(a *string) {
+	println("MAIN:::")
+	println(a)
+	*a = "egor"
+	println("MAIN:::")
+	println(a)
 
-}
-func foo2(g ...any) interface{} {
-	g
-	return g
+	fmt.Println(a)
 
 }

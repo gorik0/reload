@@ -40,4 +40,6 @@
 
 [os Sheduler (context switchign) ](https://www.ardanlabs.com/blog/2018/08/scheduling-in-go-part1.html ).
 
+[How goroutine work](https://www.youtube.com/watch?v=-K11rY57K7k)
 
+[How goroutine work 2](https://www.youtube.com/watch?v=wQpC99Xu1U4&t=274s)
