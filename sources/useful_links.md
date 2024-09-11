@@ -31,6 +31,9 @@
 
 [Go diagnostivc (godoc)](https://tip.golang.org/doc/diagnosticsgit ).
 
+[Profiling with example](https://stackademic.com/blog/profiling-go-applications-in-the-right-way-with-examples ).
+
+
 
 
 ## SHEDULER
