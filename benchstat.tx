@@ -1,0 +1,36 @@
+goos: linux
+goarch: amd64
+pkg: gittrain/prof
+cpu: 11th Gen Intel(R) Core(TM) i5-11400H @ 2.70GHz
+                                    │  scanner.be  │      split.be       │      bufio.be       │      bytes.be       │
+                                    │    sec/op    │    sec/op     vs base   │    sec/op     vs base   │    sec/op     vs base   │
+____SplitByLines___StringScanner-12   3.628µ ± ∞ ¹
+____SplitByLines___Split-12                          2.699µ ± ∞ ¹
+____SplitByLines___Buffer-12                                               3.460µ ± ∞ ¹
+SplitByLines___Buffer__BYTES-12                                            3.196µ ± ∞ ¹          3.206µ ± ∞ ¹
+geomean                               3.628µ         2.699µ        ? ² ³   3.325µ        ? ² ³   3.206µ        ? ² ³
+¹ need >= 6 samples for confidence interval at level 0.95
+² benchmark set differs from baseline; geomeans may not be comparable
+³ ratios must be >0 to compute geomean
+
+                                    │  scanner.be   │      split.be       │       bufio.be       │       bytes.be       │
+                                    │     B/op      │     B/op      vs base   │     B/op       vs base   │     B/op       vs base   │
+____SplitByLines___StringScanner-12   5.180Ki ± ∞ ¹
+____SplitByLines___Split-12                           1000.0 ± ∞ ¹
+____SplitByLines___Buffer-12                                                5.922Ki ± ∞ ¹
+SplitByLines___Buffer__BYTES-12                                             4.281Ki ± ∞ ¹          4.281Ki ± ∞ ¹
+geomean                               5.180Ki         1000.0        ? ² ³   5.035Ki        ? ² ³   4.281Ki        ? ² ³
+¹ need >= 6 samples for confidence interval at level 0.95
+² benchmark set differs from baseline; geomeans may not be comparable
+³ ratios must be >0 to compute geomean
+
+                                    │ scanner.be  │      split.be      │      bufio.be      │      bytes.be      │
+                                    │  allocs/op  │  allocs/op   vs base   │  allocs/op   vs base   │  allocs/op   vs base   │
+____SplitByLines___StringScanner-12   15.00 ± ∞ ¹
+____SplitByLines___Split-12                         8.000 ± ∞ ¹
+____SplitByLines___Buffer-12                                             12.00 ± ∞ ¹
+SplitByLines___Buffer__BYTES-12                                          12.00 ± ∞ ¹          12.00 ± ∞ ¹
+geomean                               15.00         8.000        ? ² ³   12.00        ? ² ³   12.00        ? ² ³
+¹ need >= 6 samples for confidence interval at level 0.95
+² benchmark set differs from baseline; geomeans may not be comparable
+³ ratios must be >0 to compute geomean
