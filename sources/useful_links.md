@@ -33,6 +33,12 @@
 
 [Profiling with example](https://stackademic.com/blog/profiling-go-applications-in-the-right-way-with-examples ).
 
+[Usefule example profiling](https://ydkgo.netlify.app/docs/profiling/ ).
+
+
+
+
+
 
 
 
