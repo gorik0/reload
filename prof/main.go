@@ -1,41 +1,89 @@
 package main
 
 import (
-	"fmt"
+	"log"
+	"math/rand"
 	_ "net/http/pprof"
 	"os"
 	"runtime"
-	"runtime/pprof"
-	"strings"
+	"runtime/debug"
+	"runtime/trace"
+	"sync"
+	"time"
 )
 
-var fileName = "gorik.txt"
+var wg sync.WaitGroup
 
 func main() {
+	debug.SetGCPercent(10)
+	runtime.GOMAXPROCS(30)
+	size := 10
 
-	runtime.SetCPUProfileRate(10000)
-	file, _ := os.Create("cpu.pp")
-	pprof.StartCPUProfile(file)
-	defer pprof.StopCPUProfile()
-	for i := 0; i < 10; i++ {
+	file, _ := os.Create("trace.ou")
 
-		lines := SomeFunc(fileName)
-		fmt.Println(lines)
+	trace.Start(file)
+	defer trace.Stop()
+	wg.Add(size)
+	for i := 0; i < size; i++ {
+		go Goriko(10000)
+
 	}
 
+	log.Println("be_ FINISH")
+	wg.Wait()
+	log.Println("FINISH")
+	defer runtime.StopTrace()
+
+	println("done")
 }
 
-func SomeFunc(filePath string) []string {
-	file, err := os.ReadFile(filePath)
-	if err != nil {
-		panic(err)
+func Goriko(size int) {
+	rio := make([]int, size)
 
+	for i := range rio {
+
+		rio[i] = rand.Intn(size)
+	}
+	println("BEFORE")
+	//log.Println(rio)
+
+	tick := time.Tick(time.Second * time.Duration(rand.Intn(10)))
+	timer := time.NewTimer(time.Second * 10)
+
+	makeSort(rio)
+	println("AFTER")
+	//log.Println(rio)
+gorik:
+	for {
+
+		select {
+		case <-tick:
+			{
+				insideTICK()
+			}
+		case <-timer.C:
+			println("STOP")
+			break gorik
+
+		default:
+
+		}
+	}
+	wg.Done()
+}
+
+func insideTICK() {
+	time.Sleep(time.Second * 3)
+}
+
+func makeSort(rio []int) {
+	for range rio {
+		for i := range len(rio) - 1 {
+			if rio[i] < rio[i+1] {
+				rio[i], rio[i+1] = rio[i+1], rio[i]
+			}
+
+		}
 	}
 
-	filesString := strings.Split(string(file), "\n")
-
-	//bufferedWriter.Flush()
-	//return writer
-
-	return filesString
 }
