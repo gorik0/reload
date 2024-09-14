@@ -51,6 +51,10 @@
 
 
 
+## CONCURR
+
+[Big info amount (close chan) ](https://go101.org/article/channel-closing.html ).
+
 
 
 ## SHEDULER
